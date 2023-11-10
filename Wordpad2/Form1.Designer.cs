@@ -28,139 +28,215 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rchTxtBxWords = new System.Windows.Forms.RichTextBox();
-            this.btnOpen = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.opnFlDlgArchive = new System.Windows.Forms.OpenFileDialog();
-            this.svFlDlgArchive = new System.Windows.Forms.SaveFileDialog();
-            this.cmbBxFonts = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbBxSize = new System.Windows.Forms.ComboBox();
-            this.pctrBxTeste = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pctrBxTeste)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // rchTxtBxWords
-            // 
-            this.rchTxtBxWords.Location = new System.Drawing.Point(1, 41);
-            this.rchTxtBxWords.Name = "rchTxtBxWords";
-            this.rchTxtBxWords.Size = new System.Drawing.Size(798, 186);
-            this.rchTxtBxWords.TabIndex = 0;
-            this.rchTxtBxWords.Text = "";
-            // 
-            // btnOpen
-            // 
-            this.btnOpen.Location = new System.Drawing.Point(21, 10);
-            this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(114, 23);
-            this.btnOpen.TabIndex = 1;
-            this.btnOpen.Text = "Abrir";
-            this.btnOpen.UseVisualStyleBackColor = true;
-            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(141, 10);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(113, 23);
-            this.btnSave.TabIndex = 2;
-            this.btnSave.Text = "Salvar";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            opnFlDlgArchive = new System.Windows.Forms.OpenFileDialog();
+            svFlDlgArchive = new System.Windows.Forms.SaveFileDialog();
+            pctrBxTeste = new System.Windows.Forms.PictureBox();
+            mnStrpTop = new System.Windows.Forms.MenuStrip();
+            flTlStrpMnItmMain = new System.Windows.Forms.ToolStripMenuItem();
+            opnTlStrpMnItmTop = new System.Windows.Forms.ToolStripMenuItem();
+            svTlStrpMnItmTop = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            printTlStrpMnItmTop = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            qtTlStrpMnItmTop = new System.Windows.Forms.ToolStripMenuItem();
+            editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            tbCntrlMain = new System.Windows.Forms.TabControl();
+            clrDlgFont = new System.Windows.Forms.ColorDialog();
+            ((System.ComponentModel.ISupportInitialize)pctrBxTeste).BeginInit();
+            mnStrpTop.SuspendLayout();
+            SuspendLayout();
             // 
             // opnFlDlgArchive
             // 
-            this.opnFlDlgArchive.Title = "Abrir arquivo";
+            opnFlDlgArchive.Title = "Abrir arquivo";
             // 
             // svFlDlgArchive
             // 
-            this.svFlDlgArchive.AddExtension = false;
-            this.svFlDlgArchive.Title = "Salvar arquivo";
-            // 
-            // cmbBxFonts
-            // 
-            this.cmbBxFonts.FormattingEnabled = true;
-            this.cmbBxFonts.Location = new System.Drawing.Point(346, 10);
-            this.cmbBxFonts.Name = "cmbBxFonts";
-            this.cmbBxFonts.Size = new System.Drawing.Size(121, 23);
-            this.cmbBxFonts.TabIndex = 3;
-            this.cmbBxFonts.TextChanged += new System.EventHandler(this.cmbBxFonts_TextChanged);
-            this.cmbBxFonts.Click += new System.EventHandler(this.cmbBxFonts_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(300, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 15);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Fonte:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(487, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 15);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Tam.:";
-            // 
-            // cmbBxSize
-            // 
-            this.cmbBxSize.DisplayMember = "12";
-            this.cmbBxSize.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cmbBxSize.FormattingEnabled = true;
-            this.cmbBxSize.Location = new System.Drawing.Point(528, 10);
-            this.cmbBxSize.Name = "cmbBxSize";
-            this.cmbBxSize.Size = new System.Drawing.Size(31, 24);
-            this.cmbBxSize.TabIndex = 6;
-            this.cmbBxSize.ValueMember = "12";
-            this.cmbBxSize.SelectedIndexChanged += new System.EventHandler(this.cmbBxSize_SelectedIndexChanged);
+            svFlDlgArchive.AddExtension = false;
+            svFlDlgArchive.Filter = "*.rtf|*.txt";
+            svFlDlgArchive.Title = "Salvar arquivo";
             // 
             // pctrBxTeste
             // 
-            this.pctrBxTeste.Location = new System.Drawing.Point(192, 233);
-            this.pctrBxTeste.Name = "pctrBxTeste";
-            this.pctrBxTeste.Size = new System.Drawing.Size(429, 205);
-            this.pctrBxTeste.TabIndex = 8;
-            this.pctrBxTeste.TabStop = false;
+            pctrBxTeste.Location = new System.Drawing.Point(192, 233);
+            pctrBxTeste.Name = "pctrBxTeste";
+            pctrBxTeste.Size = new System.Drawing.Size(429, 205);
+            pctrBxTeste.TabIndex = 8;
+            pctrBxTeste.TabStop = false;
+            // 
+            // mnStrpTop
+            // 
+            mnStrpTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { flTlStrpMnItmMain, editarToolStripMenuItem, formatToolStripMenuItem, zoomToolStripMenuItem });
+            mnStrpTop.Location = new System.Drawing.Point(0, 0);
+            mnStrpTop.Name = "mnStrpTop";
+            mnStrpTop.Size = new System.Drawing.Size(800, 24);
+            mnStrpTop.TabIndex = 10;
+            mnStrpTop.Text = "Menu";
+            // 
+            // flTlStrpMnItmMain
+            // 
+            flTlStrpMnItmMain.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { opnTlStrpMnItmTop, svTlStrpMnItmTop, toolStripMenuItem1, toolStripSeparator1, printTlStrpMnItmTop, toolStripSeparator2, qtTlStrpMnItmTop });
+            flTlStrpMnItmMain.Name = "flTlStrpMnItmMain";
+            flTlStrpMnItmMain.Size = new System.Drawing.Size(37, 20);
+            flTlStrpMnItmMain.Text = "File";
+            // 
+            // opnTlStrpMnItmTop
+            // 
+            opnTlStrpMnItmTop.Name = "opnTlStrpMnItmTop";
+            opnTlStrpMnItmTop.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O;
+            opnTlStrpMnItmTop.Size = new System.Drawing.Size(186, 22);
+            opnTlStrpMnItmTop.Text = "Open";
+            opnTlStrpMnItmTop.Click += openToolStripMenuItem_Click;
+            // 
+            // svTlStrpMnItmTop
+            // 
+            svTlStrpMnItmTop.Name = "svTlStrpMnItmTop";
+            svTlStrpMnItmTop.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S;
+            svTlStrpMnItmTop.Size = new System.Drawing.Size(186, 22);
+            svTlStrpMnItmTop.Text = "Save";
+            svTlStrpMnItmTop.Click += svTlStrpMnItmTop_Click;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.S;
+            toolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
+            toolStripMenuItem1.Text = "Save As";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
+            // 
+            // printTlStrpMnItmTop
+            // 
+            printTlStrpMnItmTop.Name = "printTlStrpMnItmTop";
+            printTlStrpMnItmTop.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.P;
+            printTlStrpMnItmTop.Size = new System.Drawing.Size(186, 22);
+            printTlStrpMnItmTop.Text = "Print";
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new System.Drawing.Size(183, 6);
+            // 
+            // qtTlStrpMnItmTop
+            // 
+            qtTlStrpMnItmTop.Name = "qtTlStrpMnItmTop";
+            qtTlStrpMnItmTop.Size = new System.Drawing.Size(186, 22);
+            qtTlStrpMnItmTop.Text = "Quit";
+            // 
+            // editarToolStripMenuItem
+            // 
+            editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { undoToolStripMenuItem, redoToolStripMenuItem });
+            editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            editarToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            editarToolStripMenuItem.Text = "Edit";
+            // 
+            // undoToolStripMenuItem
+            // 
+            undoToolStripMenuItem.Name = "undoToolStripMenuItem";
+            undoToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            undoToolStripMenuItem.Text = "Undo";
+            // 
+            // redoToolStripMenuItem
+            // 
+            redoToolStripMenuItem.Name = "redoToolStripMenuItem";
+            redoToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            redoToolStripMenuItem.Text = "Redo";
+            // 
+            // formatToolStripMenuItem
+            // 
+            formatToolStripMenuItem.Name = "formatToolStripMenuItem";
+            formatToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            formatToolStripMenuItem.Text = "Format";
+            // 
+            // zoomToolStripMenuItem
+            // 
+            zoomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { zoomInToolStripMenuItem, zoomOutToolStripMenuItem });
+            zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
+            zoomToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            zoomToolStripMenuItem.Text = "Zoom";
+            // 
+            // zoomInToolStripMenuItem
+            // 
+            zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
+            zoomInToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + Addition Key";
+            zoomInToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus;
+            zoomInToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            zoomInToolStripMenuItem.Text = "Zoom In";
+            // 
+            // zoomOutToolStripMenuItem
+            // 
+            zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
+            zoomOutToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + Minus Key";
+            zoomOutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus;
+            zoomOutToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            zoomOutToolStripMenuItem.Text = "Zoom Out";
+            // 
+            // tbCntrlMain
+            // 
+            tbCntrlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbCntrlMain.Location = new System.Drawing.Point(0, 24);
+            tbCntrlMain.Name = "tbCntrlMain";
+            tbCntrlMain.SelectedIndex = 0;
+            tbCntrlMain.Size = new System.Drawing.Size(800, 538);
+            tbCntrlMain.TabIndex = 12;
             // 
             // Form1
             // 
-            this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pctrBxTeste);
-            this.Controls.Add(this.cmbBxSize);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cmbBxFonts);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnOpen);
-            this.Controls.Add(this.rchTxtBxWords);
-            this.IsMdiContainer = true;
-            this.Name = "Form1";
-            this.Text = "Wordpad2";
-            ((System.ComponentModel.ISupportInitialize)(this.pctrBxTeste)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoSize = true;
+            ClientSize = new System.Drawing.Size(800, 562);
+            Controls.Add(tbCntrlMain);
+            Controls.Add(pctrBxTeste);
+            Controls.Add(mnStrpTop);
+            IsMdiContainer = true;
+            KeyPreview = true;
+            MainMenuStrip = mnStrpTop;
+            Name = "Form1";
+            Text = "Wordpad2";
+            Resize += Form1_Resize;
+            ((System.ComponentModel.ISupportInitialize)pctrBxTeste).EndInit();
+            mnStrpTop.ResumeLayout(false);
+            mnStrpTop.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.RichTextBox rchTxtBxWords;
-        private System.Windows.Forms.Button btnOpen;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.OpenFileDialog opnFlDlgArchive;
         private System.Windows.Forms.SaveFileDialog svFlDlgArchive;
-        private System.Windows.Forms.ComboBox cmbBxFonts;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbBxSize;
         private System.Windows.Forms.PictureBox pctrBxTeste;
+        private System.Windows.Forms.MenuStrip mnStrpTop;
+        private System.Windows.Forms.ToolStripMenuItem flTlStrpMnItmMain;
+        private System.Windows.Forms.ToolStripMenuItem opnTlStrpMnItmTop;
+        private System.Windows.Forms.ToolStripMenuItem svTlStrpMnItmTop;
+        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem formatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem printTlStrpMnItmTop;
+        private System.Windows.Forms.ToolStripMenuItem qtTlStrpMnItmTop;
+        private System.Windows.Forms.TabControl tbCntrlMain;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zoomInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zoomOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
+        private System.Windows.Forms.ColorDialog clrDlgFont;
     }
 }

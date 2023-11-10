@@ -17,13 +17,30 @@ namespace Wordpad2
         public Form1()
         {
             InitializeComponent();
+            this.addTab("Document 1", "");
         }
 
-        private void btnOpen_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = opnFlDlgArchive.ShowDialog();
+            this.openArch();
+        }
 
-            if (result == DialogResult.OK)
+        private void addTab(string fileName, string fileContent)
+        {
+            int counter = tbCntrlMain.TabPages.Count;
+            string newTbPageName = (counter++).ToString();
+            TabPageDefault newTbPage = new TabPageDefault($"tbPage{newTbPageName}", fileName, tbCntrlMain.Width, tbCntrlMain.Height);
+            tbCntrlMain.TabPages.Add(newTbPage);
+            tbCntrlMain.SelectTab(newTbPage);
+            newTbPage.RchTxtBxTbPage.Text = fileContent;
+        }
+
+        private void openArch()
+        {
+            UserControl userControl = new UserControl();
+
+
+            if (opnFlDlgArchive.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
@@ -31,71 +48,91 @@ namespace Wordpad2
 
                     int index = opnFlDlgArchive.FileName.IndexOf(".");
 
-                    string ext = opnFlDlgArchive.FileName.Substring(index,4).Replace('.', ' ').Trim();
+                    string ext = opnFlDlgArchive.FileName.Substring(index, 4).Replace('.', ' ').Trim();
 
-                    switch(ext)
+                    switch (ext)
                     {
                         case "jpg":
                         case "png":
                             Form2 newImg = new Form2();
                             newImg.MdiParent = this;
                             newImg.Show();
+                            newImg.BringToFront();
                             //pctrBxTeste.ImageLocation = opnFlDlgArchive.FileName;
                             newImg.pctrBxImgForm2.ImageLocation = opnFlDlgArchive.FileName;
                             break;
                         case "docx":
                         case "doc":
                         case "txt":
-                            rchTxtBxWords.Text = fileStream.ReadToEnd();
+                        case "rtf":
+                            this.addTab(opnFlDlgArchive.FileName, fileStream.ReadToEnd());
                             break;
                         default:
                             MessageBox.Show($"Extensão não suportada!!!\nExtensão selecionada: .{ext}", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                     }
-
-                }catch(Exception exc)
+                }
+                catch (Exception exc) //se dar algum erro para e cai aqui
                 {
                     MessageBox.Show($"Ocorreu um erro ao abrir o arquivo!!! Erro {exc.Message}", "Erro ao abrir arquivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void saveArch(String archive)
         {
-            DialogResult result = svFlDlgArchive.ShowDialog();
-        }
-
-        private void cmbBxFonts_Click(object sender, EventArgs e)
-        {
-            InstalledFontCollection installedFontCollection = new InstalledFontCollection();
-
-            string fontsList = "";
-
-            FontFamily fontFamily = new FontFamily("Arial");
-
-            FontFamily[] fontFamilies;
-
-            fontFamilies = installedFontCollection.Families;
-
-            foreach (var font in fontFamilies)
+            if (archive != "")
             {
-                cmbBxFonts.Items.Add(font.Name);
+                StreamWriter buffer = new StreamWriter(archive);
+
+                //buffer.Write(rchTxtBxTab.Rtf);
+                buffer.Close();
+                //tbPg1.Text = archive;
             }
-
-            //this.test.Items.Add(cmbBxFonts.Items);
+            else
+            {
+                MessageBox.Show("Nome de arquivo errado!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void cmbBxFonts_TextChanged(object sender, EventArgs e)
+        private void saveAs()
         {
-           // var fontsList = cmbBxFonts.Text;
+            if (svFlDlgArchive.ShowDialog() == DialogResult.OK)
+            {
+                this.saveArch(svFlDlgArchive.FileName);
+            }
+        }
 
-            //MessageBox.Show($"{this.test.Items.Contains(fontsList)}");
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
 
-        private void cmbBxSize_SelectedIndexChanged(object sender, EventArgs e)
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //
+            this.saveAs();
+        }
+
+        private void svTlStrpMnItmTop_Click(object sender, EventArgs e)
+        {
+            //this.saveArch(rchTxtBxTab.Rtf);
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            foreach (TabPage tbPage in tbCntrlMain.TabPages)
+            {
+                foreach (var item in tbPage.Controls)
+                {
+                    if (item == typeof(RichTextBox))
+                    {
+                        RichTextBox temp = (RichTextBox)item;
+                        temp.Left = (tbPage.Width / 2) - temp.Width / 2;
+                        temp.Top = (tbPage.Height / 2);
+                    }
+                }
+
+            }
         }
     }
 }
