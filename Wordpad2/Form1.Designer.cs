@@ -205,6 +205,7 @@
             KeyPreview = true;
             MainMenuStrip = mnStrpTop;
             Name = "Form1";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Wordpad2";
             Resize += Form1_Resize;
             ((System.ComponentModel.ISupportInitialize)pctrBxTeste).EndInit();

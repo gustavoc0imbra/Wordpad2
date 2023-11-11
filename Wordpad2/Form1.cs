@@ -37,9 +37,6 @@ namespace Wordpad2
 
         private void openArch()
         {
-            UserControl userControl = new UserControl();
-
-
             if (opnFlDlgArchive.ShowDialog() == DialogResult.OK)
             {
                 try
