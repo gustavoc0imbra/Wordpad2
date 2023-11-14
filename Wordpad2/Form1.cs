@@ -17,6 +17,7 @@ namespace Wordpad2
         public Form1()
         {
             InitializeComponent();
+            tbCntrlMain.Parent = this;
             this.addTab("Document 1", "");
         }
 
@@ -32,14 +33,10 @@ namespace Wordpad2
             TabPageDefault newTbPage = new TabPageDefault($"tbPage{newTbPageName}", fileName, tbCntrlMain.Width, tbCntrlMain.Height);
             tbCntrlMain.TabPages.Add(newTbPage);
             tbCntrlMain.SelectTab(newTbPage);
-            newTbPage.RchTxtBxTbPage.Text = fileContent;
         }
 
         private void openArch()
         {
-            UserControl userControl = new UserControl();
-
-
             if (opnFlDlgArchive.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -83,11 +80,24 @@ namespace Wordpad2
         {
             if (archive != "")
             {
-                StreamWriter buffer = new StreamWriter(archive);
+                try
+                {
+                    StreamWriter buffer = new StreamWriter(archive);
 
-                //buffer.Write(rchTxtBxTab.Rtf);
-                buffer.Close();
-                //tbPg1.Text = archive;
+                    TabPage selectedTab = tbCntrlMain.SelectedTab;
+
+                    Panel pnlText = selectedTab.Controls["pnlUsrCntrlText"] as Panel;
+
+                    UsrCntrlText usrCntrlText = pnlText.Controls["usrCntrlText"] as UsrCntrlText;
+                    
+                    buffer.Write(usrCntrlText.rchTxtBxUsrCntrl.Rtf);
+
+                    buffer.Close();
+
+                }catch(Exception exc)
+                {
+                    MessageBox.Show($"Ocorreu um erro ao salvar o arquivo!\nTente Novamente!{exc}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -103,11 +113,6 @@ namespace Wordpad2
             }
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.saveAs();
@@ -120,19 +125,7 @@ namespace Wordpad2
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            foreach (TabPage tbPage in tbCntrlMain.TabPages)
-            {
-                foreach (var item in tbPage.Controls)
-                {
-                    if (item == typeof(RichTextBox))
-                    {
-                        RichTextBox temp = (RichTextBox)item;
-                        temp.Left = (tbPage.Width / 2) - temp.Width / 2;
-                        temp.Top = (tbPage.Height / 2);
-                    }
-                }
-
-            }
+            
         }
     }
 }

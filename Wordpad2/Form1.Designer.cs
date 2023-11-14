@@ -30,7 +30,6 @@
         {
             opnFlDlgArchive = new System.Windows.Forms.OpenFileDialog();
             svFlDlgArchive = new System.Windows.Forms.SaveFileDialog();
-            pctrBxTeste = new System.Windows.Forms.PictureBox();
             mnStrpTop = new System.Windows.Forms.MenuStrip();
             flTlStrpMnItmMain = new System.Windows.Forms.ToolStripMenuItem();
             opnTlStrpMnItmTop = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +48,6 @@
             zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             tbCntrlMain = new System.Windows.Forms.TabControl();
             clrDlgFont = new System.Windows.Forms.ColorDialog();
-            ((System.ComponentModel.ISupportInitialize)pctrBxTeste).BeginInit();
             mnStrpTop.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,14 +60,6 @@
             svFlDlgArchive.AddExtension = false;
             svFlDlgArchive.Filter = "*.rtf|*.txt";
             svFlDlgArchive.Title = "Salvar arquivo";
-            // 
-            // pctrBxTeste
-            // 
-            pctrBxTeste.Location = new System.Drawing.Point(192, 233);
-            pctrBxTeste.Name = "pctrBxTeste";
-            pctrBxTeste.Size = new System.Drawing.Size(429, 205);
-            pctrBxTeste.TabIndex = 8;
-            pctrBxTeste.TabStop = false;
             // 
             // mnStrpTop
             // 
@@ -199,15 +189,14 @@
             AutoSize = true;
             ClientSize = new System.Drawing.Size(800, 562);
             Controls.Add(tbCntrlMain);
-            Controls.Add(pctrBxTeste);
             Controls.Add(mnStrpTop);
             IsMdiContainer = true;
             KeyPreview = true;
             MainMenuStrip = mnStrpTop;
             Name = "Form1";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Wordpad2";
             Resize += Form1_Resize;
-            ((System.ComponentModel.ISupportInitialize)pctrBxTeste).EndInit();
             mnStrpTop.ResumeLayout(false);
             mnStrpTop.PerformLayout();
             ResumeLayout(false);
@@ -216,10 +205,8 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox rchTxtBxWords;
         private System.Windows.Forms.OpenFileDialog opnFlDlgArchive;
         private System.Windows.Forms.SaveFileDialog svFlDlgArchive;
-        private System.Windows.Forms.PictureBox pctrBxTeste;
         private System.Windows.Forms.MenuStrip mnStrpTop;
         private System.Windows.Forms.ToolStripMenuItem flTlStrpMnItmMain;
         private System.Windows.Forms.ToolStripMenuItem opnTlStrpMnItmTop;
@@ -229,7 +216,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem printTlStrpMnItmTop;
         private System.Windows.Forms.ToolStripMenuItem qtTlStrpMnItmTop;
-        private System.Windows.Forms.TabControl tbCntrlMain;
+        public System.Windows.Forms.TabControl tbCntrlMain;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoomInToolStripMenuItem;

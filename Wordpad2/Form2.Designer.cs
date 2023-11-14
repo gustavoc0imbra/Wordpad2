@@ -28,29 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pctrBxImgForm2 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pctrBxImgForm2)).BeginInit();
-            this.SuspendLayout();
+            pctrBxImgForm2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pctrBxImgForm2).BeginInit();
+            SuspendLayout();
             // 
             // pctrBxImgForm2
             // 
-            this.pctrBxImgForm2.Location = new System.Drawing.Point(12, 12);
-            this.pctrBxImgForm2.Name = "pctrBxImgForm2";
-            this.pctrBxImgForm2.Size = new System.Drawing.Size(776, 426);
-            this.pctrBxImgForm2.TabIndex = 0;
-            this.pctrBxImgForm2.TabStop = false;
+            pctrBxImgForm2.Dock = System.Windows.Forms.DockStyle.Fill;
+            pctrBxImgForm2.Location = new System.Drawing.Point(0, 0);
+            pctrBxImgForm2.Name = "pctrBxImgForm2";
+            pctrBxImgForm2.Size = new System.Drawing.Size(800, 450);
+            pctrBxImgForm2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pctrBxImgForm2.TabIndex = 0;
+            pctrBxImgForm2.TabStop = false;
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pctrBxImgForm2);
-            this.Name = "Form2";
-            this.Text = "Imagem";
-            ((System.ComponentModel.ISupportInitialize)(this.pctrBxImgForm2)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(800, 450);
+            Controls.Add(pctrBxImgForm2);
+            Name = "Form2";
+            Text = "Imagem";
+            ((System.ComponentModel.ISupportInitialize)pctrBxImgForm2).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
