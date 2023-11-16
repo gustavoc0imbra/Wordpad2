@@ -15,19 +15,22 @@ namespace Wordpad2
         private Panel pnlUsrCntrl;
         public UsrCntrlText usrCntrlTxt;
 
-        public TabPageDefault(string name, string tabName, int tbMainWidth, int tbMainHeight) {
+        public TabPageDefault(string name, string fileName, string fileContent, bool isNew) {
             this.pnlUsrCntrl = new Panel();
-            this.usrCntrlTxt = new UsrCntrlText();
+            this.usrCntrlTxt = new UsrCntrlText(fileName);
 
             this.pnlUsrCntrl.Name = "pnlUsrCntrlText";
             this.pnlUsrCntrl.AutoSize = true;
             this.usrCntrlTxt.Dock = DockStyle.Fill;
+            this.usrCntrlTxt.isNew = isNew;
+            this.usrCntrlTxt.isChanged = false;
             this.pnlUsrCntrl.Dock = DockStyle.Fill;
             this.pnlUsrCntrl.Controls.Add(this.usrCntrlTxt);
             this.Controls.Add(pnlUsrCntrl);
 
             this.Name = name;
-            this.Text = tabName;
+            this.Text = fileName;
+            this.Visible = true;
         }
     }
 }

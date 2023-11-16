@@ -34,12 +34,14 @@
             rchTxtBxUsrCntrl = new System.Windows.Forms.RichTextBox();
             fntDlgUsrCntrlText = new System.Windows.Forms.FontDialog();
             opnFlDlgImg = new System.Windows.Forms.OpenFileDialog();
+            btnCloseTab = new System.Windows.Forms.Button();
             grpBxTools.SuspendLayout();
             SuspendLayout();
             // 
             // grpBxTools
             // 
             grpBxTools.BackColor = System.Drawing.SystemColors.MenuBar;
+            grpBxTools.Controls.Add(btnCloseTab);
             grpBxTools.Controls.Add(btnOpnImg);
             grpBxTools.Controls.Add(btnChngFontDlg);
             grpBxTools.Dock = System.Windows.Forms.DockStyle.Top;
@@ -90,6 +92,17 @@
             fntDlgUsrCntrlText.ShowColor = true;
             fntDlgUsrCntrlText.ShowHelp = true;
             // 
+            // btnCloseTab
+            // 
+            btnCloseTab.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            btnCloseTab.Location = new System.Drawing.Point(591, 22);
+            btnCloseTab.Name = "btnCloseTab";
+            btnCloseTab.Size = new System.Drawing.Size(76, 41);
+            btnCloseTab.TabIndex = 2;
+            btnCloseTab.Text = "Fechar";
+            btnCloseTab.UseVisualStyleBackColor = true;
+            btnCloseTab.Click += btnCloseTab_Click;
+            // 
             // UsrCntrlText
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -113,5 +126,6 @@
         private System.Windows.Forms.Button btnChngFontDlg;
         private System.Windows.Forms.Button btnOpnImg;
         private System.Windows.Forms.OpenFileDialog opnFlDlgImg;
+        private System.Windows.Forms.Button btnCloseTab;
     }
 }

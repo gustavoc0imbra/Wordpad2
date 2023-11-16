@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             opnFlDlgArchive = new System.Windows.Forms.OpenFileDialog();
             svFlDlgArchive = new System.Windows.Forms.SaveFileDialog();
             mnStrpTop = new System.Windows.Forms.MenuStrip();
@@ -40,9 +41,14 @@
             toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             qtTlStrpMnItmTop = new System.Windows.Forms.ToolStripMenuItem();
             editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            undoTlStrpMnItm = new System.Windows.Forms.ToolStripMenuItem();
             redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            copyStrpMnItm = new System.Windows.Forms.ToolStripMenuItem();
+            pasteStrpMnItm = new System.Windows.Forms.ToolStripMenuItem();
+            slctAllStrpMnItm = new System.Windows.Forms.ToolStripMenuItem();
             formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            atmtcBrkLnStrpMnItm = new System.Windows.Forms.ToolStripMenuItem();
             zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +64,7 @@
             // svFlDlgArchive
             // 
             svFlDlgArchive.AddExtension = false;
-            svFlDlgArchive.Filter = "*.rtf|*.txt";
+            svFlDlgArchive.Filter = "Documento de Texto (*.rtf)|Arquivo de Texto(*.txt)";
             svFlDlgArchive.Title = "Salvar arquivo";
             // 
             // mnStrpTop
@@ -121,33 +127,76 @@
             // qtTlStrpMnItmTop
             // 
             qtTlStrpMnItmTop.Name = "qtTlStrpMnItmTop";
+            qtTlStrpMnItmTop.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q;
             qtTlStrpMnItmTop.Size = new System.Drawing.Size(186, 22);
             qtTlStrpMnItmTop.Text = "Quit";
+            qtTlStrpMnItmTop.Click += qtTlStrpMnItmTop_Click;
             // 
             // editarToolStripMenuItem
             // 
-            editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { undoToolStripMenuItem, redoToolStripMenuItem });
+            editarToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
+            editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { undoTlStrpMnItm, redoToolStripMenuItem, toolStripSeparator3, copyStrpMnItm, pasteStrpMnItm, slctAllStrpMnItm });
             editarToolStripMenuItem.Name = "editarToolStripMenuItem";
             editarToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             editarToolStripMenuItem.Text = "Edit";
             // 
-            // undoToolStripMenuItem
+            // undoTlStrpMnItm
             // 
-            undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            undoToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            undoToolStripMenuItem.Text = "Undo";
+            undoTlStrpMnItm.Name = "undoTlStrpMnItm";
+            undoTlStrpMnItm.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z;
+            undoTlStrpMnItm.Size = new System.Drawing.Size(200, 22);
+            undoTlStrpMnItm.Text = "Desfazer";
+            undoTlStrpMnItm.Click += undoTlStrpMnItm_Click;
             // 
             // redoToolStripMenuItem
             // 
             redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            redoToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            redoToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             redoToolStripMenuItem.Text = "Redo";
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new System.Drawing.Size(197, 6);
+            // 
+            // copyStrpMnItm
+            // 
+            copyStrpMnItm.Name = "copyStrpMnItm";
+            copyStrpMnItm.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C;
+            copyStrpMnItm.Size = new System.Drawing.Size(200, 22);
+            copyStrpMnItm.Text = "Copiar";
+            copyStrpMnItm.Click += copyStrpMnItm_Click;
+            // 
+            // pasteStrpMnItm
+            // 
+            pasteStrpMnItm.Name = "pasteStrpMnItm";
+            pasteStrpMnItm.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V;
+            pasteStrpMnItm.Size = new System.Drawing.Size(200, 22);
+            pasteStrpMnItm.Text = "Colar";
+            pasteStrpMnItm.Click += pasteStrpMnItm_Click;
+            // 
+            // slctAllStrpMnItm
+            // 
+            slctAllStrpMnItm.Name = "slctAllStrpMnItm";
+            slctAllStrpMnItm.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A;
+            slctAllStrpMnItm.Size = new System.Drawing.Size(200, 22);
+            slctAllStrpMnItm.Text = "Selecionar Tudo";
+            slctAllStrpMnItm.Click += slctAllStrpMnItm_Click;
             // 
             // formatToolStripMenuItem
             // 
+            formatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { atmtcBrkLnStrpMnItm });
             formatToolStripMenuItem.Name = "formatToolStripMenuItem";
             formatToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             formatToolStripMenuItem.Text = "Format";
+            // 
+            // atmtcBrkLnStrpMnItm
+            // 
+            atmtcBrkLnStrpMnItm.CheckOnClick = true;
+            atmtcBrkLnStrpMnItm.Name = "atmtcBrkLnStrpMnItm";
+            atmtcBrkLnStrpMnItm.Size = new System.Drawing.Size(221, 22);
+            atmtcBrkLnStrpMnItm.Text = "Quebra de linha automática";
+            atmtcBrkLnStrpMnItm.Click += atmtcBrkLnStrpMnItm_Click;
             // 
             // zoomToolStripMenuItem
             // 
@@ -180,6 +229,7 @@
             tbCntrlMain.SelectedIndex = 0;
             tbCntrlMain.Size = new System.Drawing.Size(800, 538);
             tbCntrlMain.TabIndex = 12;
+            tbCntrlMain.Visible = false;
             // 
             // Form1
             // 
@@ -187,6 +237,8 @@
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
+            BackgroundImage = (System.Drawing.Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             ClientSize = new System.Drawing.Size(800, 562);
             Controls.Add(tbCntrlMain);
             Controls.Add(mnStrpTop);
@@ -196,7 +248,7 @@
             Name = "Form1";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Wordpad2";
-            Resize += Form1_Resize;
+            FormClosing += Form1_FormClosing;
             mnStrpTop.ResumeLayout(false);
             mnStrpTop.PerformLayout();
             ResumeLayout(false);
@@ -216,14 +268,19 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem printTlStrpMnItmTop;
         private System.Windows.Forms.ToolStripMenuItem qtTlStrpMnItmTop;
-        public System.Windows.Forms.TabControl tbCntrlMain;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoomInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoomOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem undoTlStrpMnItm;
         private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
         private System.Windows.Forms.ColorDialog clrDlgFont;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem copyStrpMnItm;
+        private System.Windows.Forms.ToolStripMenuItem pasteStrpMnItm;
+        private System.Windows.Forms.ToolStripMenuItem slctAllStrpMnItm;
+        private System.Windows.Forms.ToolStripMenuItem atmtcBrkLnStrpMnItm;
+        private System.Windows.Forms.TabControl tbCntrlMain;
     }
 }
