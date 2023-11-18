@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             grpBxTools = new System.Windows.Forms.GroupBox();
+            btnCloseTab = new System.Windows.Forms.Button();
             btnOpnImg = new System.Windows.Forms.Button();
             btnChngFontDlg = new System.Windows.Forms.Button();
             rchTxtBxUsrCntrl = new System.Windows.Forms.RichTextBox();
             fntDlgUsrCntrlText = new System.Windows.Forms.FontDialog();
             opnFlDlgImg = new System.Windows.Forms.OpenFileDialog();
-            btnCloseTab = new System.Windows.Forms.Button();
             grpBxTools.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,10 +52,21 @@
             grpBxTools.TabStop = false;
             grpBxTools.Text = "Ferramentas";
             // 
+            // btnCloseTab
+            // 
+            btnCloseTab.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            btnCloseTab.Location = new System.Drawing.Point(591, 22);
+            btnCloseTab.Name = "btnCloseTab";
+            btnCloseTab.Size = new System.Drawing.Size(76, 41);
+            btnCloseTab.TabIndex = 2;
+            btnCloseTab.Text = "Fechar";
+            btnCloseTab.UseVisualStyleBackColor = true;
+            btnCloseTab.Click += btnCloseTab_Click;
+            // 
             // btnOpnImg
             // 
             btnOpnImg.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            btnOpnImg.Location = new System.Drawing.Point(191, 22);
+            btnOpnImg.Location = new System.Drawing.Point(494, 22);
             btnOpnImg.Name = "btnOpnImg";
             btnOpnImg.Size = new System.Drawing.Size(91, 41);
             btnOpnImg.TabIndex = 1;
@@ -91,17 +102,6 @@
             fntDlgUsrCntrlText.FontMustExist = true;
             fntDlgUsrCntrlText.ShowColor = true;
             fntDlgUsrCntrlText.ShowHelp = true;
-            // 
-            // btnCloseTab
-            // 
-            btnCloseTab.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            btnCloseTab.Location = new System.Drawing.Point(591, 22);
-            btnCloseTab.Name = "btnCloseTab";
-            btnCloseTab.Size = new System.Drawing.Size(76, 41);
-            btnCloseTab.TabIndex = 2;
-            btnCloseTab.Text = "Fechar";
-            btnCloseTab.UseVisualStyleBackColor = true;
-            btnCloseTab.Click += btnCloseTab_Click;
             // 
             // UsrCntrlText
             // 

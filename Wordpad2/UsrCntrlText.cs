@@ -50,11 +50,18 @@ namespace Wordpad2
         {
             if (opnFlDlgImg.ShowDialog() == DialogResult.OK)
             {
-                Form2 newForm = new Form2();
+                UsrCntrlImg newImg = new UsrCntrlImg(opnFlDlgImg.FileName);
+                //newImg.Parent = this;
+                newImg.Visible = true;
+                this.Controls.Add(newImg);
+                newImg.Show();
+                newImg.BringToFront();
+
+                /*Form2 newForm = new Form2();
                 newForm.Parent = this;
                 newForm.pctrBxImgForm2.ImageLocation = opnFlDlgImg.FileName;
                 newForm.Show();
-                newForm.BringToFront();
+                newForm.BringToFront();*/
             }
         }
 
@@ -74,7 +81,7 @@ namespace Wordpad2
 
         private void btnCloseTab_Click(object sender, EventArgs e)
         {
-            if(!isChanged)
+            if (!isChanged)
             {
                 this.closeTab();
             }
@@ -82,25 +89,25 @@ namespace Wordpad2
             {
                 DialogResult result = MessageBox.Show("Arquivo alterado!\nDeseja Salvar?", "Wordpad 2", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if(result == DialogResult.Yes)
+                if (result == DialogResult.Yes)
                 {
-                   Form1 parentForm =  this.ParentForm as Form1;
+                    Form1 parentForm = this.ParentForm as Form1;
 
-                   if(isNew)
-                   {
+                    if (isNew)
+                    {
                         parentForm.saveAs();
-                   }
-                   else
-                   {
+                    }
+                    else
+                    {
                         //salvar só
-                   }
+                    }
                 }
                 else
                 {
                     this.closeTab();
                 }
             }
-            
+
         }
     }
 }
