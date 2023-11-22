@@ -128,7 +128,6 @@ namespace Wordpad2
 
         public void saveArch(String archive)
         {
-            MessageBox.Show(archive, "Teste");
             if (archive != "")
             {
                 try
