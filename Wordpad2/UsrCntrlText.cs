@@ -18,6 +18,7 @@ namespace Wordpad2
         public bool hasAlrdyChngdTabText = false;
         public bool isNew = false;
         public string fileName = "";
+        public int imagesOpened = 0;
 
         public UsrCntrlText(string fileName)
         {
@@ -41,8 +42,15 @@ namespace Wordpad2
         {
             if (fntDlgUsrCntrlText.ShowDialog() == DialogResult.OK)
             {
-                rchTxtBxUsrCntrl.SelectionFont = fntDlgUsrCntrlText.Font;
-                rchTxtBxUsrCntrl.SelectionColor = fntDlgUsrCntrlText.Color;
+                if(rchTxtBxUsrCntrl.SelectedRtf != "")
+                {
+                    rchTxtBxUsrCntrl.SelectionFont = fntDlgUsrCntrlText.Font;
+                    rchTxtBxUsrCntrl.SelectionColor = fntDlgUsrCntrlText.Color;
+                }
+                else
+                {
+                    rchTxtBxUsrCntrl.Font = new Font(fntDlgUsrCntrlText.Font.FontFamily, fntDlgUsrCntrlText.Font.Size, fntDlgUsrCntrlText.Font.Style);
+                }
             }
         }
 
@@ -51,17 +59,11 @@ namespace Wordpad2
             if (opnFlDlgImg.ShowDialog() == DialogResult.OK)
             {
                 UsrCntrlImg newImg = new UsrCntrlImg(opnFlDlgImg.FileName);
-                //newImg.Parent = this;
-                newImg.Visible = true;
                 this.Controls.Add(newImg);
+                newImg.Visible = true;
                 newImg.Show();
                 newImg.BringToFront();
-
-                /*Form2 newForm = new Form2();
-                newForm.Parent = this;
-                newForm.pctrBxImgForm2.ImageLocation = opnFlDlgImg.FileName;
-                newForm.Show();
-                newForm.BringToFront();*/
+                this.imagesOpened++;
             }
         }
 
@@ -69,7 +71,8 @@ namespace Wordpad2
         {
             rchTxtBxUsrCntrl.Left = (this.Width / 2) - (rchTxtBxUsrCntrl.Width / 2);
             rchTxtBxUsrCntrl.Height = this.Height - ((70 / 100) * this.Height);
-            //rchTxtBxUsrCntrl.Top = (this.Height / 2) - (rchTxtBxUsrCntrl.Height / 2);
+            btnCloseTab.Left = this.Width - btnOpnImg.Width;
+            btnOpnImg.Left = (this.Width - btnOpnImg.Width) - 100;
         }
 
         private void closeTab()
@@ -99,7 +102,7 @@ namespace Wordpad2
                     }
                     else
                     {
-                        //salvar só
+                        parentForm.svTlStrpMnItmTop_Click(sender, e);
                     }
                 }
                 else

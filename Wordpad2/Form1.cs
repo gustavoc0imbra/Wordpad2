@@ -14,11 +14,20 @@ namespace Wordpad2
 {
     public partial class Form1 : Form
     {
+
+        /* 
+            NOMES: Gustavo Silva Coimbra R.A: 04722-013
+                   Leonardo Fernando Zanardi R.A: 04722-022
+                   Vinicius Inhesta Dos Santos R.A: 04722-071
+         
+         */
+
+        public int zoom;
         public Form1()
         {
             InitializeComponent();
             tbCntrlMain.Parent = this;
-            this.addTab("Document 1", "", true);
+            this.addTab("Document 1", "", "txt", true);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -26,7 +35,7 @@ namespace Wordpad2
             this.openArch();
         }
 
-        private void addTab(string fileName, string fileContent, bool isNew)
+        private void addTab(string fileName, string fileContent, string ext, bool isNew)
         {
             int counter = tbCntrlMain.TabPages.Count;
             string newTbPageName = (counter++).ToString();
@@ -41,7 +50,20 @@ namespace Wordpad2
 
             UsrCntrlText newTab = this.getTabComponents();
 
-            newTab.rchTxtBxUsrCntrl.Rtf = fileContent;
+            if(ext == "rtf")
+            {
+                newTab.rchTxtBxUsrCntrl.Rtf = fileContent;
+            }
+            else
+            {
+                newTab.rchTxtBxUsrCntrl.Text = fileContent;
+            }
+
+            newTab.isChanged = false;
+            newTab.hasAlrdyChngdTabText = false;
+            newTbPage.Text = fileName;
+
+
         }
 
         public UsrCntrlText getTabComponents()
@@ -65,6 +87,8 @@ namespace Wordpad2
                     {
 
                         var fileStream = new StreamReader(opnFlDlgArchive.FileName);
+                        string fileContent = fileStream.ReadToEnd();
+                        fileStream.Close();
 
                         int index = opnFlDlgArchive.FileName.IndexOf(".");
 
@@ -72,20 +96,16 @@ namespace Wordpad2
 
                         switch (ext)
                         {
-                            case "jpg":
                             case "png":
-                                //Form2 newImg = new Form2();
-                                //newImg.MdiParent = this;
-                                //newImg.Show();
-                                //newImg.BringToFront();
-                                //pctrBxTeste.ImageLocation = opnFlDlgArchive.FileName;
-                                //newImg.pctrBxImgForm2.ImageLocation = opnFlDlgArchive.FileName;
-                                break;
+                            case "jpg":
+                            case "jpeg":
+                                MessageBox.Show("Para abrir uma imagem favor abrir ou criar um novo documento!", "Wordpad 2 informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    break;
                             case "docx":
                             case "doc":
                             case "txt":
                             case "rtf":
-                                this.addTab(opnFlDlgArchive.FileName, fileStream.ReadToEnd(), true);
+                                this.addTab(opnFlDlgArchive.FileName, fileContent, ext, false);
                                 break;
                             default:
                                 MessageBox.Show($"Extensão não suportada!!!\nExtensão selecionada: .{ext}", "Wordpad 2 alerta:", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -106,8 +126,9 @@ namespace Wordpad2
             }
         }
 
-        private void saveArch(String archive)
+        public void saveArch(String archive)
         {
+            MessageBox.Show(archive, "Teste");
             if (archive != "")
             {
                 try
@@ -116,7 +137,16 @@ namespace Wordpad2
 
                     UsrCntrlText selectedTabCmpnt = this.getTabComponents();
 
-                    buffer.Write(selectedTabCmpnt.rchTxtBxUsrCntrl.Rtf);
+                    int index = archive.IndexOf('.');
+
+                    if(archive.Substring(index).Replace(".","") == "rtf")
+                    {
+                        buffer.Write(selectedTabCmpnt.rchTxtBxUsrCntrl.Rtf);
+                    }
+                    else
+                    {
+                        buffer.Write(selectedTabCmpnt.rchTxtBxUsrCntrl.Text);
+                    }
 
                     buffer.Close();
 
@@ -124,6 +154,8 @@ namespace Wordpad2
 
                     selectedTab.Text = archive;
                     selectedTabCmpnt.hasAlrdyChngdTabText = false;
+                    selectedTabCmpnt.isChanged = false;
+                    selectedTabCmpnt.isNew = false;
                 }
                 catch (Exception exc)
                 {
@@ -140,7 +172,9 @@ namespace Wordpad2
         {
             if (svFlDlgArchive.ShowDialog() == DialogResult.OK)
             {
-                this.saveArch(svFlDlgArchive.FileName);
+                this.saveArch(svFlDlgArchive.FileName.Replace(")", ""));
+                UsrCntrlText selectedTab = this.getTabComponents();
+                selectedTab.fileName = svFlDlgArchive.FileName.Replace(")", "");
             }
         }
 
@@ -160,7 +194,7 @@ namespace Wordpad2
             else
             {
                 TabPage tabPage = tbCntrlMain.SelectedTab;
-                this.saveArch(tabPage.Text);
+                this.saveArch(tabPage.Text.Replace(" *", ""));
             }
 
         }
@@ -175,7 +209,7 @@ namespace Wordpad2
 
                 UsrCntrlText windowComponents = panel.Controls["usrCntrlText"] as UsrCntrlText;
 
-                if (windowComponents.isChanged)
+                if (windowComponents.isChanged == true)
                 {
                     cntrEditedNotSaved++;
                 }
@@ -246,9 +280,9 @@ namespace Wordpad2
         {
             UsrCntrlText selectedTab = this.getTabComponents();
 
-            if (selectedTab.rchTxtBxUsrCntrl.SelectedRtf != "")
+            if (selectedTab.rchTxtBxUsrCntrl.SelectedText != "")
             {
-                Clipboard.SetDataObject(selectedTab.rchTxtBxUsrCntrl.SelectedRtf);
+                Clipboard.SetDataObject(selectedTab.rchTxtBxUsrCntrl.SelectedText);
             }
 
         }
@@ -259,7 +293,7 @@ namespace Wordpad2
             {
                 UsrCntrlText selectedTab = this.getTabComponents();
 
-                selectedTab.rchTxtBxUsrCntrl.Text = selectedTab.rchTxtBxUsrCntrl.Text + (string)Clipboard.GetData(DataFormats.Text);
+                selectedTab.rchTxtBxUsrCntrl.Rtf = selectedTab.rchTxtBxUsrCntrl.Rtf + (string)Clipboard.GetData(DataFormats.Text);
             }
         }
 
@@ -284,6 +318,43 @@ namespace Wordpad2
                 atmtcBrkLnStrpMnItm.CheckState = CheckState.Checked;
                 selectedTab.rchTxtBxUsrCntrl.WordWrap = true;
             }
+        }
+
+        private void newTlStrpMnItm_Click(object sender, EventArgs e)
+        {
+            int amountTab = 0;
+            amountTab = tbCntrlMain.TabCount;
+
+            amountTab++;
+
+            this.addTab($"Document {amountTab}", "", "txt", true);
+        }
+
+        private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsrCntrlText selectedTab = this.getTabComponents();
+
+            this.zoom++;
+
+            selectedTab.rchTxtBxUsrCntrl.Font = new Font(selectedTab.rchTxtBxUsrCntrl.Font.FontFamily, selectedTab.rchTxtBxUsrCntrl.Font.Size + 1, selectedTab.rchTxtBxUsrCntrl.Font.Style);
+        }
+
+        private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsrCntrlText selectedTab = this.getTabComponents();
+
+            this.zoom--;
+
+            selectedTab.rchTxtBxUsrCntrl.Font = new Font(selectedTab.rchTxtBxUsrCntrl.Font.FontFamily, selectedTab.rchTxtBxUsrCntrl.Font.Size - 1, selectedTab.rchTxtBxUsrCntrl.Font.Style);
+        }
+
+        private void resetZoomTlStrpMnItm_Click(object sender, EventArgs e)
+        {
+            this.zoom = 100;
+
+            UsrCntrlText selectedTab = this.getTabComponents();
+
+            selectedTab.rchTxtBxUsrCntrl.Font = new Font(selectedTab.rchTxtBxUsrCntrl.Font.FontFamily, 12, selectedTab.rchTxtBxUsrCntrl.Font.Style);
         }
     }
 }
